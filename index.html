@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JS Demo 03</title>
+	<link href="light.css" rel="stylesheet">
+
+</head>
+<body>
+	<div id="mode">Switch Modes</div>
+	<br/>
+	<h1>Let's Add Some New Nodes to a List!</h1>
+	<ol></ol>
+	<input type="button" value="Click to Add" />
+	<br/>
+	<br/>
+	<img src="front.png">
+	<br/>
+	<input type="button" value="Change Picture" />
+
+	<script>
+		//add event listener to all the buton-like elemtents
+		document.getElementById("mode").addEventListener("click", switchMode);
+		document.getElementsByTagName("input")[0].addEventListener("click", addItem);
+		document.getElementsByTagName("input")[1].addEventListener("click", changeImg);
+
+
+		// definition of the switchMode() function
+		function switchMode() {
+			//variable to store the reference to the <link> element
+			let stylesheet = document.getElementsByTagName("link")[0];
+
+			// analyze the current value of the stylesheet href (.getAttribute or .setAttribute)
+
+			if (stylesheet.getAttribute("href") === "light.css") {
+				//if it is currently loading the light stylesheet, change it to the dark stylesheet
+				stylesheet.setAttribute("href", "dark.css");
+			} else {
+				//alreAdy in dark mode, switch back to light
+				stylesheet.setAttribute("href", "light.css");
+			} // end of if/else statement
+		} // end of switchMode() function
+
+	// definition of the addItem() function
+	function addItem() {
+		// this variable creates the data fragment for a new <li>
+		let item = document.createElement("li");
+
+		// this variable creates the data for a text node
+		let itemText = document.createTextNode("I'm a new Item!");
+
+		// attach the text node to the element node
+		item.appendChild(itemText);
+
+		// take the updated element node and append it to the actual document
+		document.getElementsByTagName("ol")[0].appendChild(item);
+	} // end of add item function
+
+	// definition of the changeImg() function
+	function changeImg() {
+		// variable to store the reference to the <img> element
+		let image = document.getElementsByTagName("img")[0];
+
+		// change the src attricbute of the <img> element
+		image.setAttribute("src", "java.png");
+
+		// after the picture has been changed, remove the button
+		document.getElementsByTagName("input")[1].style.display = "none";
+	}	
+	</script>
+
+</body>
+</html>
